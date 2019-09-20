@@ -23,8 +23,8 @@
 		310333812334E39B0079623D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 310333802334E39B0079623D /* CoreBluetooth.framework */; };
 		310333952334FE370079623D /* CalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 310333942334FE370079623D /* CalendarManager.m */; };
 		31033398233504040079623D /* libStarPrinting.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31033397233504040079623D /* libStarPrinting.a */; };
-		3103339A233504790079623D /* StarIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31033399233504790079623D /* StarIO.framework */; };
 		3EE747FE3B87F654D9DE68DF /* libPods-Dprint-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95745D73896C8F7C1D4B30BC /* libPods-Dprint-tvOS.a */; };
+		4851917223350E4C00963DFC /* StarIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4851917123350E4C00963DFC /* StarIO.framework */; };
 		4C371DFFA6C723982D7E08D7 /* libPods-Dprint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8C383906FE07119543BD7 /* libPods-Dprint.a */; };
 		6477DE79D6DA881568D55C46 /* libPods-Dprint-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D02574661904D9D1274D56 /* libPods-Dprint-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -72,6 +72,7 @@
 		310333962334FE4C0079623D /* CalendarManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarManager.h; sourceTree = "<group>"; };
 		31033397233504040079623D /* libStarPrinting.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libStarPrinting.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		31033399233504790079623D /* StarIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StarIO.framework; path = Pods/StarPrinting/StarIO.framework; sourceTree = "<group>"; };
+		4851917123350E4C00963DFC /* StarIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StarIO.framework; sourceTree = "<group>"; };
 		77BC25969D0EB522B5A1F51E /* Pods-Dprint-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dprint-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Dprint-tvOSTests/Pods-Dprint-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81F8C383906FE07119543BD7 /* libPods-Dprint.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dprint.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		891E3B96693C587C5161BB9B /* Pods-DprintTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DprintTests.debug.xcconfig"; path = "Target Support Files/Pods-DprintTests/Pods-DprintTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3103339A233504790079623D /* StarIO.framework in Frameworks */,
+				4851917223350E4C00963DFC /* StarIO.framework in Frameworks */,
 				31033398233504040079623D /* libStarPrinting.a in Frameworks */,
 				310333812334E39B0079623D /* CoreBluetooth.framework in Frameworks */,
 				3103337F2334E3940079623D /* ExternalAccessory.framework in Frameworks */,
@@ -165,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				31033399233504790079623D /* StarIO.framework */,
+				4851917123350E4C00963DFC /* StarIO.framework */,
 				31033397233504040079623D /* libStarPrinting.a */,
 				310333802334E39B0079623D /* CoreBluetooth.framework */,
 				3103337E2334E3940079623D /* ExternalAccessory.framework */,
@@ -670,10 +672,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 8N3B58PS5F;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Pods/StarPrint/FrameWorks",
-					"$(PROJECT_DIR)/Pods/StarPrinting",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = Dprint/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -700,10 +699,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8N3B58PS5F;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Pods/StarPrint/FrameWorks",
-					"$(PROJECT_DIR)/Pods/StarPrinting",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = Dprint/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

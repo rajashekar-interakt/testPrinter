@@ -3,6 +3,14 @@ import { NativeModules, StyleSheet,View, Text, Button } from 'react-native';
 
 export default class App extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
+  UNSAFE_componentWillMount() {
+    NativeModules.CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
+  }
+
   turnOn = () => {    
     NativeModules.Bulb.turnOn();  
     NativeModules.CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
