@@ -37,6 +37,39 @@ class Bulb: NSObject {
     Bulb.isOn = false
   }
   
+  @objc func qrPrint(smPort: SMPort) -> Void {
+    let builder: ISCBBuilder = StarIoExt.createCommandBuilder(StarIoExtEmulation.starPRNT)
+    let encoding: String.Encoding = String.Encoding.utf8
+    builder.beginDocument()
+    builder.append(SCBCodePageType.UTF8)
+    builder.append(SCBInternationalType.japan)
+    /*****Section one Address Start**********/
+    builder.appendCharacterSpace(1)
+    //center alignment
+    builder.appendAlignment(SCBAlignmentPosition.center)
+    // appending the string
+    builder.appendData(withMultipleHeight:
+        "A01\n".data(using: encoding), height: 3)
+    /*****Section one Address End**********/
+    /***** Receipt Data Start**********/
+    let otherData: Data = "Hello World.".data(using: String.Encoding.ascii)!
+    builder.appendData(withMultipleHeight: "Scan code to select the table\n A01 \n".data(using: encoding), height: 1)
+    /** QR Code */
+    builder.appendQrCodeData(otherData, model: SCBQrCodeModel.no2, level: SCBQrCodeLevel., cell: 10)
+    //builder.appendUnitFeed(32)
+    /** QR Code ends */
+    builder.append((
+        "\n--------------------------------\n" +
+        "\n").data(using: encoding))
+    builder.appendCutPaper(SCBCutPaperAction.partialCutWithFeed)
+    
+    builder.endDocument()
+    let ding = builder.commands.copy() as? Data
+    
+    let co: Bool = sendCommands(ding, port: smPort)
+    print("print "+String(co))
+  }
+  
   @objc func receiptPrint(smPort: SMPort) -> Void {
     let builder: ISCBBuilder = StarIoExt.createCommandBuilder(StarIoExtEmulation.starPRNT)
     let encoding: String.Encoding = String.Encoding.utf8
@@ -67,7 +100,7 @@ class Bulb: NSObject {
         "Receipt Name: Receipt00010000\n" +
         "Transaction No: 000010347651513\n" +
         "\n").data(using: encoding))
-        builder.appendData(withMultiple: "Thanks you. Please come again soon\n \n".data(using: encoding), width: 1, height: 1)
+        builder.appendData(withMultipleHeight: "Thanks you. Please come again soon\n \n".data(using: encoding), height: 1)
     /***** Receipt Data END **********/
     /***** Menu Items List and pricing Starting *****/
     builder.appendAlignment(SCBAlignmentPosition.left)
@@ -129,7 +162,7 @@ class Bulb: NSObject {
         SMPort.release(smPort)
       }
       //let builder: ISCBBuilder = StarIoExt.createCommandBuilder(StarIoExtEmulation.starPRNT)
-      receiptPrint(smPort: smPort)
+      qrPrint(smPort: smPort)
       //var printerStatus: StarPrinterStatus_2 = StarPrinterStatus_2()
       //var isStarted: UInt32;
       // Start to check the completion of printing
