@@ -9,11 +9,12 @@ export default class App extends Component {
 
   UNSAFE_componentWillMount() {
     //NativeModules.CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
-    NativeModules.Bulb.turnOn("hello");
+    //NativeModules.Bulb.turnOn("hello");
+    NativeModules.Bulb.getPrinters();
 
     setTimeout(() => {
       console.log("calling this");
-      //NativeModules.Bulb.connectPrinter();
+      NativeModules.Bulb.connectPrinter();
     }, 2000);
   }
 

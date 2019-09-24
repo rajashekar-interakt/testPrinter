@@ -37,6 +37,91 @@ class Bulb: NSObject {
     Bulb.isOn = false
   }
   
+  @objc func receiptPrint(smPort: SMPort) -> Void {
+    let builder: ISCBBuilder = StarIoExt.createCommandBuilder(StarIoExtEmulation.starPRNT)
+    let encoding: String.Encoding = String.Encoding.utf8
+    builder.beginDocument()
+    builder.append(SCBCodePageType.UTF8)
+    builder.append(SCBInternationalType.japan)
+    /*****Section one Address Start**********/
+    builder.appendCharacterSpace(1)
+    //center alignment
+    builder.appendAlignment(SCBAlignmentPosition.center)
+    // appending the string
+    builder.append((
+        "[Receipt]\n" +
+        "Welks Merchant\n" +
+        "123 Star Road\n" +
+        "City, State 12345\n" +
+        "03-0000-0000\n" +
+        "\n").data(using: encoding))
+    /*****Section one Address End**********/
+    /***** Receipt Data Start**********/
+    //text left appennding
+    builder.appendCharacterSpace(0)
+    builder.appendAlignment(SCBAlignmentPosition.left)
+    builder.append((
+        "MM/DD/YYYY HH:MM:SS PM\n" +
+        "Cashier:0001 In Charger:0001\n" +
+        "Number of People:01\n" +
+        "Receipt Name: Receipt00010000\n" +
+        "Transaction No: 000010347651382946513\n" +
+        "\n").data(using: encoding))
+        builder.appendData(withMultiple: "Thanks you. Please come again soon\n".data(using: encoding), width: 1, height: 1)
+    /***** Receipt Data END **********/
+    /***** Menu Items List and pricing Starting *****/
+    builder.appendAlignment(SCBAlignmentPosition.left)
+    builder.appendData(withEmphasis: "Coffee\n".data(using: encoding))
+    builder.appendAlignment(SCBAlignmentPosition.right)
+    builder.append((
+        "$280 x2 $560\n").data(using: encoding))
+    /***** Menu Items List and pricing Ending *****/
+    /***** Princing Deatils with discount Staring *****/
+    //line one
+    builder.appendAlignment(SCBAlignmentPosition.left)
+    builder.append("Discount".data(using: encoding))
+    builder.appendAlignment(SCBAlignmentPosition.right)
+    builder.append("$0\n".data(using: encoding))
+    //line two
+    builder.appendAlignment(SCBAlignmentPosition.left)
+    builder.appendData(withMultiple: "Total ".data(using: encoding), width: 2, height: 2)
+    builder.appendAlignment(SCBAlignmentPosition.right)
+    builder.appendData(withMultiple: "$1860\n".data(using: encoding), width: 2, height: 2)
+    //line three
+    builder.appendAlignment(SCBAlignmentPosition.left)
+    builder.append("(Included Tax)".data(using: encoding))
+    builder.appendAlignment(SCBAlignmentPosition.right)
+    builder.append("$148\n".data(using: encoding))
+    //line four
+    builder.appendAlignment(SCBAlignmentPosition.left)
+    builder.append("Cash".data(using: encoding))
+    builder.appendAlignment(SCBAlignmentPosition.right)
+    builder.append("$1900\n".data(using: encoding))
+    //line five
+    builder.appendAlignment(SCBAlignmentPosition.left)
+    builder.append("Paid amount".data(using: encoding))
+    builder.appendAlignment(SCBAlignmentPosition.right)
+    builder.append("$1900\n".data(using: encoding))
+    //line five
+    builder.appendAlignment(SCBAlignmentPosition.left)
+    builder.appendData(withMultiple: "Change ".data(using: encoding), width: 2, height: 2)
+    builder.appendAlignment(SCBAlignmentPosition.right)
+    builder.appendData(withMultiple: "$40\n".data(using: encoding), width: 2, height: 2)
+    
+    builder.appendAlignment(SCBAlignmentPosition.center)
+    builder.appendData(withMultiple: "\n Received the amount above.\n".data(using: encoding), width: 1, height: 1)
+    builder.append((
+        "\n--------------------------------\n" +
+        "\n").data(using: encoding))
+    builder.appendCutPaper(SCBCutPaperAction.partialCutWithFeed)
+    
+    builder.endDocument()
+    let ding = builder.commands.copy() as? Data
+    
+    let co: Bool = sendCommands(ding, port: smPort)
+    print("print "+String(co))
+  }
+  
   @objc func getPrinters() -> Array<PortInfo> {
     var searchPrinterResult: [PortInfo]? = nil
     do {
@@ -58,6 +143,8 @@ class Bulb: NSObject {
         // Close port
         SMPort.release(smPort)
       }
+      //let builder: ISCBBuilder = StarIoExt.createCommandBuilder(StarIoExtEmulation.starPRNT)
+      receiptPrint(smPort: smPort)
       //var printerStatus: StarPrinterStatus_2 = StarPrinterStatus_2()
       //var isStarted: UInt32;
       // Start to check the completion of printing
@@ -72,7 +159,7 @@ class Bulb: NSObject {
       
       //let length: UInt = UInt(bytes.count)
       
-      let builder: ISCBBuilder = StarIoExt.createCommandBuilder(StarIoExtEmulation.starPRNT)
+      
       
       /*builder.beginDocument()
       
@@ -85,7 +172,7 @@ class Bulb: NSObject {
       builder.appendCutPaper(SCBCutPaperAction.partialCutWithFeed)
       
       builder.endDocument()*/
-      let encoding: String.Encoding
+      /*let encoding: String.Encoding
       
      encoding = String.Encoding.utf8
       builder.beginDocument()
@@ -158,7 +245,7 @@ class Bulb: NSObject {
       let ding = builder.commands.copy() as? Data
       
       let co: Bool = sendCommands(ding, port: smPort)
-      print("print "+String(co))
+      print("print "+String(co))*/
       
       /*let commands = builder.commands.copy();
       
