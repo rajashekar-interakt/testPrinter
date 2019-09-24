@@ -65,51 +65,36 @@ class Bulb: NSObject {
         "Cashier:0001 In Charger:0001\n" +
         "Number of People:01\n" +
         "Receipt Name: Receipt00010000\n" +
-        "Transaction No: 000010347651382946513\n" +
+        "Transaction No: 000010347651513\n" +
         "\n").data(using: encoding))
-        builder.appendData(withMultiple: "Thanks you. Please come again soon\n".data(using: encoding), width: 1, height: 1)
+        builder.appendData(withMultiple: "Thanks you. Please come again soon\n \n".data(using: encoding), width: 1, height: 1)
     /***** Receipt Data END **********/
     /***** Menu Items List and pricing Starting *****/
     builder.appendAlignment(SCBAlignmentPosition.left)
     builder.appendData(withEmphasis: "Coffee\n".data(using: encoding))
     builder.appendAlignment(SCBAlignmentPosition.right)
     builder.append((
-        "$280 x2 $560\n").data(using: encoding))
+        "$280  x2  $560\n \n").data(using: encoding))
     /***** Menu Items List and pricing Ending *****/
     /***** Princing Deatils with discount Staring *****/
-    //line one
     builder.appendAlignment(SCBAlignmentPosition.left)
-    builder.append("Discount".data(using: encoding))
-    builder.appendAlignment(SCBAlignmentPosition.right)
-    builder.append("$0\n".data(using: encoding))
-    //line two
+    builder.append((
+        "Discount                     $0\n" ).data(using: encoding))
     builder.appendAlignment(SCBAlignmentPosition.left)
-    builder.appendData(withMultiple: "Total ".data(using: encoding), width: 2, height: 2)
-    builder.appendAlignment(SCBAlignmentPosition.right)
-    builder.appendData(withMultiple: "$1860\n".data(using: encoding), width: 2, height: 2)
-    //line three
+    builder.appendData(withEmphasis:
+        "Total                     $1860\n".data(using: encoding))
     builder.appendAlignment(SCBAlignmentPosition.left)
-    builder.append("(Included Tax)".data(using: encoding))
-    builder.appendAlignment(SCBAlignmentPosition.right)
-    builder.append("$148\n".data(using: encoding))
-    //line four
+    builder.append((
+        "(Included TAX)             $148\n" +
+        "Cash                      $1900\n" +
+        "Paid amount               $1900\n").data(using: encoding))
     builder.appendAlignment(SCBAlignmentPosition.left)
-    builder.append("Cash".data(using: encoding))
-    builder.appendAlignment(SCBAlignmentPosition.right)
-    builder.append("$1900\n".data(using: encoding))
-    //line five
-    builder.appendAlignment(SCBAlignmentPosition.left)
-    builder.append("Paid amount".data(using: encoding))
-    builder.appendAlignment(SCBAlignmentPosition.right)
-    builder.append("$1900\n".data(using: encoding))
-    //line five
-    builder.appendAlignment(SCBAlignmentPosition.left)
-    builder.appendData(withMultiple: "Change ".data(using: encoding), width: 2, height: 2)
-    builder.appendAlignment(SCBAlignmentPosition.right)
-    builder.appendData(withMultiple: "$40\n".data(using: encoding), width: 2, height: 2)
+    builder.appendData(withEmphasis:
+        "Change                      $40\n".data(using: encoding))
     
     builder.appendAlignment(SCBAlignmentPosition.center)
-    builder.appendData(withMultiple: "\n Received the amount above.\n".data(using: encoding), width: 1, height: 1)
+    builder.appendData(withMultipleHeight:"\n Received the amount above.".data(using: encoding),height:1)
+    
     builder.append((
         "\n--------------------------------\n" +
         "\n").data(using: encoding))
