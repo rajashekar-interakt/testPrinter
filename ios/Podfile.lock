@@ -79,7 +79,6 @@ PODS:
     - React-Core (= 0.60.5)
   - React-RCTWebSocket (0.60.5):
     - React-Core (= 0.60.5)
-  - StarPrinting (0.1.1)
   - yoga (0.60.5.React)
 
 DEPENDENCIES:
@@ -103,13 +102,11 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
-  - StarPrinting (~> 0.1)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
-    - StarPrinting
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -177,9 +174,8 @@ SPEC CHECKSUMS:
   React-RCTText: b074d89033583d4f2eb5faf7ea2db3a13c7553a2
   React-RCTVibration: 2105b2e0e2b66a6408fc69a46c8a7fb5b2fdade0
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
-  StarPrinting: c25ea4b3e4314c7cc647a7a8bff260fe755e69f3
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
-PODFILE CHECKSUM: a1293ea0b1d1f8b956630664be35ba1d74182527
+PODFILE CHECKSUM: 94e7864adb4d05eac392298c8b21008b45f934a5
 
 COCOAPODS: 1.7.5

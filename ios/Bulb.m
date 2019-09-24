@@ -11,8 +11,12 @@
 
 @interface RCT_EXTERN_MODULE(Bulb, NSObject)
 
-RCT_EXTERN_METHOD(turnOn)
+RCT_EXTERN_METHOD(turnOn: (NSString *)value)
 
 RCT_EXTERN_METHOD(turnOff)
+
+RCT_EXTERN_METHOD(getPrinters);
+
+RCT_EXTERN_METHOD(connectPrinter);
 
 @end

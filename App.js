@@ -8,12 +8,19 @@ export default class App extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    NativeModules.CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
+    //NativeModules.CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
+    NativeModules.Bulb.turnOn("hello");
+
+    setTimeout(() => {
+      console.log("calling this");
+      //NativeModules.Bulb.connectPrinter();
+    }, 2000);
   }
 
   turnOn = () => {    
-    NativeModules.Bulb.turnOn();  
-    NativeModules.CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
+    //NativeModules.Bulb.turnOn();  
+    //NativeModules.CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
+    NativeModules.Bulb.connectPrinter("BT:mPop");
   }
 
   turnOff = () => {

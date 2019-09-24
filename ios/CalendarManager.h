@@ -8,7 +8,6 @@
 
 // CalendarManager.h
 #import <React/RCTBridgeModule.h>
-#import <StarPrinting/StarPrinting.h>
 
 @interface CalendarManager : NSObject <RCTBridgeModule>
 @end

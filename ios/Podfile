@@ -27,7 +27,7 @@ target 'Dprint' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
   
-  pod "StarPrinting", "~> 0.1"
+  #pod "StarPrinting", "~> 0.1"
 
   target 'DprintTests' do
     inherit! :search_paths
